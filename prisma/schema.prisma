@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id                              String   @id @default(auto()) @map("_id") @db.ObjectId
+  product_name                    String   @unique
+  model_no                        String   @unique
+  slug                            String   @unique
+  cavity                          String
+  type                            String
+  automation_level                String
+  target_market                   String
+  production_capacity_bph         Int
+  bottle_volume_range_ml          String
+  air_pressure_requirement_bar    String
+  cooling_water_requirement_l_min Float
+  power_consumption_kw            Float
+  noise_level_db                  String
+  servo                           String
+  dimensions_lwh_mm               String
+  weight_kg                       Float
+  liters                          Float
+  certification                   String
+  material_compatibility          String
+  warranty_period                 String
+  price_range_usd                 String
+  control_system                  String
+  additional_features             String
+  customization_options           String
+  image_url                       String
+  created_at                      DateTime @default(now())
+  updated_at                      DateTime @updatedAt
+}
+
+model Contact {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String
+  phone      String
+  company    String?
+  message    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model ProductQuote {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  product_id    String
+  product_name  String
+  product_model String
+  name          String
+  email         String
+  phone         String
+  company       String
+  message       String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+}
+
+model CustomQuote {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String
+  phone      String
+  company    String
+  message    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model TurnkeySolution {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String
+  phone      String
+  company    String
+  message    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
